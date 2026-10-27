@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DexMedix — Medical Laboratory Website
 
 **Accurate Results. Healthier Tomorrow.**
@@ -200,3 +201,7 @@ src/
 4. Replace every placeholder image/section listed above.
 5. Update `NEXT_PUBLIC_SITE_URL` (used by sitemap/OG tags).
 6. Change `SESSION_SECRET` and never commit `.env`.
+=======
+# dex-me-dix
+DexMedix Diagnostics is a modern medical laboratory that provides accurate, timely and reliable diagnostic testing. From routine blood and urine tests to genetic, hormone and specialized screenings, our skilled team and advanced technology help individuals, families and healthcare providers make informed health decisions with confidence.
+>>>>>>> e5205c1466d3ca719073106c87ca6018714476d0
