@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="DexMedix">
+  <defs>
+    <linearGradient id="dm-crimson" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E13A56"/>
+      <stop offset="100%" stop-color="#8F0E22"/>
+    </linearGradient>
+  </defs>
+  <!-- rounded-square badge -->
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#dm-crimson)"/>
+  <!-- subtle inner highlight -->
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+  <!-- heartbeat / ECG pulse -->
+  <path d="M10 34h10l4-12 7 24 5-16 3 4h15"
+        fill="none" stroke="#ffffff" stroke-width="4"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- small amber dot accent -->
+  <circle cx="52" cy="14" r="4" fill="#FFB547"/>
+</svg>
