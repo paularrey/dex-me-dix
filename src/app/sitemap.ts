@@ -22,29 +22,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: path === "" ? 1 : 0.7,
   }));
 
-  let serviceRoutes: MetadataRoute.Sitemap = [];
-  let packageRoutes: MetadataRoute.Sitemap = [];
-
-  try {
-    const [services, packages] = await Promise.all([
-      getAllServices(),
-      getPackagesWithTests(),
-    ]);
-    serviceRoutes = services.map((s) => ({
-      url: `${base}/services/${s.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    }));
-    packageRoutes = packages.map((p) => ({
-      url: `${base}/packages/${p.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    }));
-  } catch {
-    // Database unavailable — still emit the static routes.
-  }
+  const [services, packages] = await Promise.all([
+    getAllServices(),
+    getPackagesWithTests(),
+  ]);
+  const serviceRoutes: MetadataRoute.Sitemap = services.map((s) => ({
+    url: `${base}/services/${s.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+  const packageRoutes: MetadataRoute.Sitemap = packages.map((p) => ({
+    url: `${base}/packages/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
 
   return [...staticRoutes, ...serviceRoutes, ...packageRoutes];
 }

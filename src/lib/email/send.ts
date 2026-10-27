@@ -3,7 +3,9 @@ import { isSmtpConfigured, getFromAddress, getTransporter } from "@/lib/email/ma
 import { baseTemplate, type FieldRow } from "@/lib/email/templates";
 
 /** Hard fallback so a submission is always routed somewhere, even if .env is missing. */
-export const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "paulmichaelomega@gmail.com";
+export function getNotifyEmail(): string {
+  return process.env.NOTIFY_EMAIL || "paulmichaelomega@gmail.com";
+}
 
 export type SendResult = { ok: boolean; skipped?: boolean; error?: string };
 
@@ -109,7 +111,7 @@ export function bookingRows(b: BookingMailInput, submittedAt: string): FieldRow[
 export async function sendBookingNotification(b: BookingMailInput): Promise<SendResult> {
   const submittedAt = timestamp();
   return deliver({
-    to: NOTIFY_EMAIL,
+    to: getNotifyEmail(),
     replyTo: `"${b.fullName}" <${b.email}>`,
     subject: `[Booking ${b.reference}] ${b.fullName} — ${b.testTypeLabel}`,
     html: baseTemplate({
@@ -150,7 +152,7 @@ export type ContactMailInput = {
 export async function sendContactNotification(c: ContactMailInput): Promise<SendResult> {
   const submittedAt = timestamp();
   return deliver({
-    to: NOTIFY_EMAIL,
+    to: getNotifyEmail(),
     replyTo: `"${c.name}" <${c.email}>`,
     subject: `[Contact] ${c.subject} — ${c.name}`,
     html: baseTemplate({

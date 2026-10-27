@@ -15,11 +15,11 @@ import {
 } from "@/lib/queries";
 
 export default async function HomePage() {
-  // Seeded content — failures fall back to empty lists instead of crashing.
+  // Static catalogue data (src/data) — no database access at build or runtime.
   const [services, packages, testimonials] = await Promise.all([
-    getFeaturedServices().catch(() => []),
-    getFeaturedPackagesWithTests().catch(() => []),
-    getTestimonials().catch(() => []),
+    getFeaturedServices(),
+    getFeaturedPackagesWithTests(),
+    getTestimonials(),
   ]);
 
   return (

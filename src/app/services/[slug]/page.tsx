@@ -21,7 +21,7 @@ import { site } from "@/lib/site";
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  const services = await getAllServices().catch(() => []);
+  const services = await getAllServices();
   return services.map((s) => ({ slug: s.slug }));
 }
 

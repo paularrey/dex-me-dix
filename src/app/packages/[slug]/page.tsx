@@ -20,7 +20,7 @@ import { site } from "@/lib/site";
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  const packages = await getPackagesWithTests().catch(() => []);
+  const packages = await getPackagesWithTests();
   return packages.map((p) => ({ slug: p.slug }));
 }
 
