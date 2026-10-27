@@ -32,7 +32,7 @@ const steps = [
   },
   {
     title: "Sample collection",
-    body: "Arrive 10 minutes early at 123 Healthline Road with a valid ID — or our phlebotomist calls you to agree the home-collection window.",
+    body: "Arrive 10 minutes early at our Jerome Hwande Street lab with a valid ID — or our phlebotomist calls you to agree the home-collection window.",
   },
   {
     title: "Results within 24 hours",

@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   applicationName: site.name,
   keywords: [
     "medical laboratory",
-    "Lagos lab",
+    "Makurdi lab",
     "blood tests",
     "test packages",
     "home sample collection",

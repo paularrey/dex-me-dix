@@ -243,7 +243,7 @@ export function BookingForm({
               id="phone"
               type="tel"
               autoComplete="tel"
-              placeholder="+234 801 234 5678"
+              placeholder="07031625384"
               className={inputClass}
               aria-invalid={Boolean(errors.phone)}
               {...register("phone")}
@@ -379,13 +379,13 @@ export function BookingForm({
                 {
                   value: "walk-in",
                   title: "Walk-in at the lab",
-                  body: "Visit us at Victoria Island during opening hours.",
+                  body: "Visit us on Jerome Hwande Street during opening hours.",
                   Icon: Building2,
                 },
                 {
                   value: "home",
                   title: "Home sample collection",
-                  body: "A phlebotomist comes to your address in Lagos.",
+                  body: "A phlebotomist comes to your address in Makurdi.",
                   Icon: Home,
                 },
               ].map(({ value, title, body, Icon }) => (
@@ -546,7 +546,7 @@ export function BookingForm({
               <input
                 id="emergencyPhone"
                 type="tel"
-                placeholder="+234 …"
+                placeholder="0703 …"
                 className={inputClass}
                 {...register("emergencyPhone")}
               />

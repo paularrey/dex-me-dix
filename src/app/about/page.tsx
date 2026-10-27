@@ -21,7 +21,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about DexMedix Diagnostics — our story, mission, vision, values, laboratory team and quality accreditations in Victoria Island, Lagos.",
+    "Learn about DexMedix Diagnostics — our story, mission, vision, values, laboratory team and quality accreditations in Makurdi, Benue State.",
 };
 
 const values = [
@@ -61,7 +61,7 @@ const accreditations = [
   },
   {
     title: "STATE REGISTRATION",
-    body: "Registered with the Lagos State Ministry of Health — placeholder, replace with your registration number.",
+    body: "Registered with the Benue State Ministry of Health — placeholder, replace with your registration number.",
   },
   {
     title: "STANDARD ORGANISATION",
@@ -138,7 +138,7 @@ export default function AboutPage() {
               </p>
               <p className="mt-4 text-sm leading-relaxed text-navy-500">
                 Today we serve individuals, families, HMOs and referring
-                physicians across Lagos, with the same founding promise:{" "}
+                physicians across Benue, with the same founding promise:{" "}
                 <strong className="text-navy-800">{site.tagline}</strong>
               </p>
               <ButtonLink href="/book" className="mt-8">

@@ -2,12 +2,12 @@ export const site = {
   name: process.env.NEXT_PUBLIC_SITE_NAME || "DexMedix",
   tagline: "Accurate Results. Healthier Tomorrow.",
   description:
-    "DexMedix is a modern medical laboratory in Victoria Island, Lagos offering accurate testing, fast turnaround times and convenient booking — in-lab or home sample collection.",
+    "DexMedix is a modern medical laboratory in Makurdi, Benue State offering accurate testing, fast turnaround times and convenient booking — in-lab or home sample collection.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   logo: "/logo.jpeg",
-  address: "123 Healthline Road, Victoria Island, Lagos, Nigeria",
-  phone: "+234 801 234 5678",
-  phoneHref: "+2348012345678",
+  address: "Jerome Hwande Street, Beside Hallydays Hotel, Ankpa quarter, Makurdi, Benue state, Nigeria",
+  phone: "07031625384",
+  phoneHref: "+2347031625384",
   email: "info@dexmedix.com",
   notifyEmail: process.env.NOTIFY_EMAIL || "paulmichaelomega@gmail.com",
   openingHours: [

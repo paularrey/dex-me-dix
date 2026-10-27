@@ -39,7 +39,7 @@ const sections = [
   },
   {
     heading: "7. Home sample collection",
-    body: "Home collection is available within our Lagos coverage area and is subject to phlebotomist availability. Our staff carry identification; please verify it before collection.",
+    body: "Home collection is available within our Makurdi coverage area and is subject to phlebotomist availability. Our staff carry identification; please verify it before collection.",
   },
   {
     heading: "8. Limitation of liability",
@@ -51,7 +51,7 @@ const sections = [
   },
   {
     heading: "10. Governing law",
-    body: "These terms are governed by the laws of the Federal Republic of Nigeria. Disputes will be handled by the courts of competent jurisdiction in Lagos State.",
+    body: "These terms are governed by the laws of the Federal Republic of Nigeria. Disputes will be handled by the courts of competent jurisdiction in Benue State.",
   },
 ];
 

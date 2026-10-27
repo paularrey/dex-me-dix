@@ -231,8 +231,8 @@ export default async function PackageDetailPage({ params }: Props) {
                   <span className="accent-word">Clear answers.</span>
                 </h2>
                 <p className="mt-4 text-sm leading-relaxed text-white/75 sm:text-base">
-                  Choose walk-in at our Victoria Island lab or home sample
-                  collection across Lagos for {pkg.name}. You&apos;ll get a
+                  Choose walk-in at our Makurdi lab or home sample
+                  collection across Makurdi for {pkg.name}. You&apos;ll get a
                   booking reference and confirmation email immediately.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

@@ -16,7 +16,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "Do you offer home sample collection?",
-    a: `Yes. Select "Home sample collection" when booking — available across our Lagos coverage area, subject to phlebotomist availability. There may be a small convenience fee confirmed before dispatch.`,
+    a: `Yes. Select "Home sample collection" when booking — available across our Makurdi coverage area, subject to phlebotomist availability. There may be a small convenience fee confirmed before dispatch.`,
   },
   {
     q: "Can I book for someone else?",

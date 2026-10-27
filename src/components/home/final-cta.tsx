@@ -52,7 +52,7 @@ export function FinalCta() {
                 <span className="accent-word text-amber-400">Book</span> in 2 minutes.
               </h2>
               <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/75">
-                Walk in to our Victoria Island lab or let our phlebotomist come to
+                Walk in to our Makurdi lab or let our phlebotomist come to
                 you — either way, results within 24 hours.
               </p>
 

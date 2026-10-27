@@ -138,8 +138,8 @@ export default async function ServiceDetailPage({ params }: Props) {
                       Book {service.name}
                     </h2>
                     <p className="mt-3 text-sm leading-relaxed text-white/70">
-                      Choose walk-in at our Victoria Island lab or home sample
-                      collection across Lagos. You&apos;ll get a reference
+                      Choose walk-in at our Makurdi lab or home sample
+                      collection across Makurdi. You&apos;ll get a reference
                       number and confirmation email immediately.
                     </p>
                     <ButtonLink

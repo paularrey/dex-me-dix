@@ -164,7 +164,7 @@ export function ContactForm() {
             id="contact-phone"
             type="tel"
             autoComplete="tel"
-            placeholder="+234 801 234 5678"
+            placeholder="07031625384"
             className="input-base"
             aria-invalid={Boolean(errors.phone)}
             {...register("phone")}

@@ -135,7 +135,7 @@ export default function ContactPage() {
                     {/* TODO: replace with an embedded Google/Apple map */}
                     <Image
                       src="/images/map-placeholder.jpg"
-                      alt="Map placeholder showing the DexMedix location in Victoria Island, Lagos"
+                      alt="Map placeholder showing the DexMedix location in Makurdi, Benue State"
                       fill
                       sizes="(min-width: 1024px) 40vw, 100vw"
                       className="object-cover"
@@ -147,7 +147,7 @@ export default function ContactPage() {
                       <MapPin className="h-6 w-6" />
                     </span>
                     <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-xs font-bold text-navy-800 shadow">
-                      Victoria Island, Lagos
+                      Ankpa quarter, Makurdi, Benue state
                     </span>
                   </div>
                   <div className="flex items-start justify-between gap-4 p-6">
@@ -160,7 +160,7 @@ export default function ContactPage() {
                       </p>
                     </div>
                     <a
-                      href="https://maps.google.com/?q=Victoria+Island+Lagos"
+                      href="https://maps.google.com/?q=Jerome+Hwande+Street+Makurdi+Benue"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 rounded-full bg-navy-950 px-5 py-2.5 text-xs font-bold text-white transition hover:-translate-y-0.5 hover:bg-navy-800"

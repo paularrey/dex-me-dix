@@ -66,7 +66,7 @@ export function Hero() {
             <motion.div variants={reduce ? undefined : item}>
               <Badge tone="crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson-700" />
-                Trusted lab in Lagos
+                Trusted lab in Makurdi
               </Badge>
             </motion.div>
 
@@ -89,8 +89,8 @@ export function Hero() {
               className="mt-5 max-w-xl text-lg leading-relaxed text-navy-500"
             >
               From routine blood work to advanced molecular diagnostics, DexMedix
-              delivers dependable results with 24-hour turnaround — in our
-              Victoria Island lab or at your home.
+              delivers dependable results with 24-hour turnaround — at our
+              Makurdi lab or at your home.
             </motion.p>
 
             <motion.div variants={reduce ? undefined : item} className="mt-8 flex flex-wrap items-center gap-3">

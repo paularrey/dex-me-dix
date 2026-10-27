@@ -25,7 +25,7 @@ const features = [
   },
   {
     title: "Easy to reach",
-    body: "Right in Victoria Island, plus online booking and home collection in Lagos.",
+    body: "Right in Makurdi, plus online booking and home collection across Benue.",
     Icon: MapPin,
     tint: "bg-blush-200 text-crimson-800",
   },
@@ -63,7 +63,7 @@ export function WhyChooseUs() {
               </p>
               <div className="mt-3 flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-amber-500" aria-hidden="true" />
-                <p className="text-xs font-semibold text-white/70">Serving Lagos since 2018</p>
+                <p className="text-xs font-semibold text-white/70">Serving Benue since 2018</p>
               </div>
             </div>
           </Reveal>
