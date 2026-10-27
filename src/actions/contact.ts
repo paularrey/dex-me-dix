@@ -1,7 +1,6 @@
 "use server";
 
 import { headers } from "next/headers";
-import { prisma } from "@/lib/prisma";
 import { contactSchema } from "@/lib/validation/booking";
 import { checkRateLimit, clientKey } from "@/lib/rate-limit";
 import { sendContactNotification } from "@/lib/email/send";
@@ -40,7 +39,6 @@ export async function submitContact(
     return { ok: false, error: "Please correct the highlighted fields.", fieldErrors };
   }
 
-  // Drop the honeypot field — keep only what the contact table stores.
   const data = {
     name: parsed.data.name,
     email: parsed.data.email,
@@ -49,25 +47,12 @@ export async function submitContact(
     message: parsed.data.message,
   };
 
-  let savedId: string;
-  try {
-    const saved = await prisma.contactMessage.create({ data });
-    savedId = saved.id;
-  } catch {
-    console.error("[contact] database save failed");
-    return { ok: false, error: "We couldn't save your message. Please try again shortly." };
-  }
-
+  // Submission = email to the lab. SMTP missing/failing is logged and
+  // never breaks the message.
   const notify = await sendContactNotification(data);
-
-  try {
-    await prisma.contactMessage.update({
-      where: { id: savedId },
-      data: { emailSent: notify.ok },
-    });
-  } catch {
-    console.error("[contact] could not update emailSent flag");
-  }
+  console.info(
+    `[contact] message from ${data.email} — notify: ${notify.ok ? "sent" : notify.skipped ? "skipped" : "failed"}`
+  );
 
   return { ok: true };
 }

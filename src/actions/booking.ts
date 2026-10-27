@@ -1,11 +1,11 @@
 "use server";
 
 import { cookies, headers } from "next/headers";
-import { prisma } from "@/lib/prisma";
 import { bookingSchema, type BookingInput } from "@/lib/validation/booking";
 import { isValidSlot, isDateOpen, formatDateLong } from "@/lib/hours";
 import { generateReference } from "@/lib/utils";
 import { checkRateLimit, clientKey } from "@/lib/rate-limit";
+import { resolveBookableItem } from "@/lib/queries";
 import {
   sendBookingNotification,
   sendBookingConfirmation,
@@ -16,21 +16,6 @@ export type ActionResult<T = undefined> =
   | { ok: false; error: string; fieldErrors?: Record<string, string[]> };
 
 const EMAIL_COOLDOWN_KEY = "booking:last-email";
-
-async function resolveTestLabel(itemType: "service" | "package", itemId: string) {
-  if (itemType === "package") {
-    const pkg = await prisma.testPackage.findFirst({
-      where: { OR: [{ slug: itemId }, { id: itemId }] },
-    });
-    if (pkg) return { id: pkg.id, label: pkg.name };
-    return null;
-  }
-  const service = await prisma.service.findFirst({
-    where: { OR: [{ slug: itemId }, { id: itemId }] },
-  });
-  if (service) return { id: service.id, label: service.name };
-  return null;
-}
 
 export async function submitBooking(
   _prev: ActionResult<{ reference: string }> | undefined,
@@ -76,63 +61,12 @@ export async function submitBooking(
     return { ok: false, error: "That time slot is outside our opening hours." };
   }
 
-  const item = await resolveTestLabel(input.itemType, input.itemId);
+  const item = resolveBookableItem(input.itemType, input.itemId);
   if (!item) {
     return { ok: false, error: "The selected test type is no longer available." };
   }
 
-  // No double-booking of the same slot (cancelled bookings don't block it)
-  const clash = await prisma.booking.findFirst({
-    where: {
-      preferredDate: input.preferredDate,
-      preferredTime: input.preferredTime,
-      collectionType: input.collectionType,
-      status: { not: "cancelled" },
-    },
-    select: { reference: true },
-  });
-  if (clash) {
-    return {
-      ok: false,
-      error: `That ${input.collectionType === "home" ? "home collection" : "lab"} slot is already taken. Please choose another time.`,
-    };
-  }
-
   const reference = generateReference();
-
-  // Save first — a failed email must never lose the submission.
-  let saved;
-  try {
-    saved = await prisma.booking.create({
-      data: {
-        reference,
-        fullName: input.fullName,
-        email: input.email,
-        phone: input.phone,
-        dateOfBirth: input.dateOfBirth,
-        gender: input.gender,
-        address: input.address,
-        itemType: input.itemType,
-        itemId: item.id,
-        itemName: item.label,
-        collectionType: input.collectionType,
-        preferredDate: input.preferredDate,
-        preferredTime: input.preferredTime,
-        doctorName: input.doctorName,
-        notes: input.notes,
-        conditions: input.conditions,
-        emergencyName: input.emergencyName,
-        emergencyPhone: input.emergencyPhone,
-        consent: input.consent,
-      },
-    });
-  } catch {
-    console.error("[booking] database save failed");
-    return {
-      ok: false,
-      error: "We couldn't save your booking just now. Please try again in a moment.",
-    };
-  }
 
   const mailPayload = {
     reference,
@@ -155,19 +89,15 @@ export async function submitBooking(
     consent: "Accepted",
   };
 
+  // Submission = email to the lab + confirmation to the patient.
+  // SMTP missing/failing is logged and never breaks the booking.
   const [notify, confirmation] = await Promise.all([
     sendBookingNotification(mailPayload),
     sendBookingConfirmation(mailPayload),
   ]);
-
-  try {
-    await prisma.booking.update({
-      where: { id: saved.id },
-      data: { emailSent: notify.ok && confirmation.ok },
-    });
-  } catch {
-    console.error("[booking] could not update emailSent flag");
-  }
+  console.info(
+    `[booking] ${reference} — notify: ${notify.ok ? "sent" : notify.skipped ? "skipped" : "failed"}, confirmation: ${confirmation.ok ? "sent" : confirmation.skipped ? "skipped" : "failed"}`
+  );
 
   // Cookies carry the reference to the success page (no PII in the URL).
   const jar = await cookies();

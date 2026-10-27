@@ -3,7 +3,6 @@
 import { cookies, headers } from "next/headers";
 import { createHmac, timingSafeEqual } from "crypto";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
 import { checkRateLimit } from "@/lib/rate-limit";
 
 const COOKIE_NAME = "dexmedix_admin";
@@ -106,13 +105,7 @@ export async function updateBookingStatus(
   if (!id || !(BOOKING_STATUSES as readonly string[]).includes(status)) {
     return { ok: false, error: "Invalid request." };
   }
-  try {
-    await prisma.booking.update({ where: { id }, data: { status } });
-    return { ok: true };
-  } catch {
-    console.error("[admin] status update failed");
-    return { ok: false, error: "Could not update the booking." };
-  }
+  return { ok: false, error: "No data store is connected yet — bookings arrive by email." };
 }
 
 export async function updateContactStatus(
@@ -127,11 +120,5 @@ export async function updateContactStatus(
   if (!id || !["new", "replied", "closed"].includes(status)) {
     return { ok: false, error: "Invalid request." };
   }
-  try {
-    await prisma.contactMessage.update({ where: { id }, data: { status } });
-    return { ok: true };
-  } catch {
-    console.error("[admin] message status update failed");
-    return { ok: false, error: "Could not update the message." };
-  }
+  return { ok: false, error: "No data store is connected yet — messages arrive by email." };
 }
